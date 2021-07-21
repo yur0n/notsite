@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Bots</title>
+    <link rel="icon" href="/img/weather.png">
+    <link rel="stylesheet" href="/css/styles.css">    
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+        <p>There are 3 Telegram bots present:</p>
+        <ul>
+            <li><a class="links" href="https://t.me/Weather123123_bot">Weather BOT</a></li>    
+            <li><a class="links" href="https://t.me/dota3331_bot">Dota BOT</a></li>   
+            <li><a class="links" href="https://t.me/warzone13_bot">Warzone BOT</a></li>    
+        </ul>
+        <p><strong>Weather BOT</strong> provides the same functionality you can see on this site - 
+        it gives you a weather forecast. The bot is using 2 APIs: location => longtitued/latitued => 
+        weather forecast. The site is using 3 APIs (IP => location => longtitued/latitued => weather forecast)</p>
+        <p><br><strong>Dota BOT</strong> will automatically send you statistics of the recent Dota match. It tries to 
+        fetch data every 15 minutes. If the data is the same, it sends nothing.</p>
+        <p><br><strong>Warzone BOT</strong> provides you with the latest Warzone match statistics (not automated).</p>
+    </div>
+
+    {{>footer}}
+</body>
+
+</html>
