@@ -17,13 +17,13 @@ try {
         parse_mode: 'Markdown',
         reply_markup: JSON.stringify({
           inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
-          { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.item_id}`}]]})}
+          { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`}]]})}
     switch (data.type) {
         case 'message_new':
             let options0 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
-                  inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
+                  inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.message.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/im?sel=-${data.group_id}`}]]})}
             await bot.sendMessage(rudi, 'Входящее сообщение')
                   bot.sendMessage(rudi, data.object.message.text, options0)
@@ -33,7 +33,7 @@ try {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
-                  { text: "Подробнее", url: `https://vk.com/sib_herb?w=wall-124949590_${data.post_id}`}]]})}
+                  { text: "Подробнее", url: `https://vk.com/sib_herb?w=wall-124949590_${data.object.post_id}`}]]})}
             await bot.sendMessage(rudi, 'Добавление комментария на стене')
                   bot.sendMessage(rudi, data.object.text, options1)                
         case 'board_post_new':
@@ -41,7 +41,7 @@ try {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
-                  { text: "Подробнее", url: `https://vk.com/topic-124949590_${data.topic_id}`}]]})}
+                  { text: "Подробнее", url: `https://vk.com/topic-124949590_${data.object.topic_id}`}]]})}
             await bot.sendMessage(rudi, 'Создание комментария в обсуждении')
                   bot.sendMessage(rudi, data.object.text, options2)     
             break
@@ -62,7 +62,7 @@ try {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
-                  { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.item_id}`}]]})}
+                  { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`}]]})}
                   bot.sendMessage(rudi, 'Платёж через VK Pay')
                   bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, options3) 
             break
