@@ -1,10 +1,10 @@
 const Slimbot = require('slimbot');
-const bot = new Slimbot('1915366945:AAEwTu7T3G6A8ooESb4jSdfpDQcogsAHxJQ') //1928057359:AAEe94RZJ7oheBjlyE-gThde79JhU72mSJU
+const bot = new Slimbot('1928057359:AAEe94RZJ7oheBjlyE-gThde79JhU72mSJU')
 
 
-  const rudi = 378931386
+
 // const yur0n = 378931386
-// const rudi = 267424833
+const rudi = 267424833
 
 bot.on('message',  mes => {
     bot.sendMessage(mes.chat.id, 'Я буду автоматически присылать новую информацию о твоей группе.')
@@ -13,7 +13,7 @@ bot.on('message',  mes => {
 
 const getData = async (data) => {
 try {    
-    const line = '_____________________________________________________________'
+    const line = '➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖'
     const optionsMarketComment = {
         parse_mode: 'Markdown',
         reply_markup: JSON.stringify({
