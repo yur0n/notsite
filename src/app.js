@@ -39,6 +39,7 @@ app.use(express.json()) // middleware to POST json (req.body)
 app.post('/vk', async (req, res) => {
     getData(req.body)
     res.send('ok')
+    console.log(req.body)  
 })
 
 
