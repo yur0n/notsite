@@ -13,49 +13,57 @@ bot.on('message',  mes => {
 
 const getData = async (data) => {
 try {    
+    const line = '_____________________________________________________________'
     const optionsMarketComment = {
         parse_mode: 'Markdown',
         reply_markup: JSON.stringify({
           inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
           { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`}]]})}
     switch (data.type) {
-        case 'message_new':
-            let options0 = {
-                parse_mode: 'Markdown',
-                reply_markup: JSON.stringify({
-                  inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.message.from_id}`}, 
-                  { text: "Подробнее", url: `https://vk.com/im?sel=-${data.group_id}`}]]})}
-            await bot.sendMessage(rudi, 'Входящее сообщение')
-                  bot.sendMessage(rudi, data.object.message.text, options0)
-            break
         case 'wall_reply_new':
             let options1 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/sib_herb?w=wall-124949590_${data.object.post_id}`}]]})}
-            await bot.sendMessage(rudi, 'Добавление комментария на стене')
-                  bot.sendMessage(rudi, data.object.text, options1)                
+            await bot.sendMessage(rudi, 'Добавление комментария на стене:')
+            await bot.sendMessage(rudi, data.object.text, options1)
+                  bot.sendMessage(rudi, line)
+            break        
+        case 'message_new':
+            let options0 = {
+                parse_mode: 'Markdown',
+                reply_markup: JSON.stringify({
+                  inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.message.from_id}`}, 
+                  { text: "Подробнее", url: `https://vk.com/im?sel=-${data.group_id}`}]]})}
+            await bot.sendMessage(rudi, 'Входящее сообщение:')
+            await bot.sendMessage(rudi, data.object.message.text, options0)
+                  bot.sendMessage(rudi, line)
+            break        
         case 'board_post_new':
             let options2 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/topic-124949590_${data.object.topic_id}`}]]})}
-            await bot.sendMessage(rudi, 'Создание комментария в обсуждении')
-                  bot.sendMessage(rudi, data.object.text, options2)     
+            await bot.sendMessage(rudi, 'Создание комментария в обсуждении:')
+            await bot.sendMessage(rudi, data.object.text, options2)
+                  bot.sendMessage(rudi, line)     
             break
         case 'market_comment_new':
-            await bot.sendMessage(rudi, 'Новый комментарий к товару')
-                  bot.sendMessage(rudi, data.object.text, optionsMarketComment)
+            await bot.sendMessage(rudi, 'Новый комментарий к товару:')
+            await bot.sendMessage(rudi, data.object.text, optionsMarketComment)
+                  bot.sendMessage(rudi, line)
             break
         case 'market_comment_edit':
-            await bot.sendMessage(rudi, 'Редактирование комментария к товару')
-                  bot.sendMessage(rudi, data.object.text, optionsMarketComment)  
+            await bot.sendMessage(rudi, 'Редактирование комментария к товару:')
+            await bot.sendMessage(rudi, data.object.text, optionsMarketComment)
+                  bot.sendMessage(rudi, line)  
             break
         case 'market_comment_restore':
-            await bot.sendMessage(rudi, 'Восстановление комментария к товару')
-                  bot.sendMessage(rudi, data.object.text, optionsMarketComment)  
+            await bot.sendMessage(rudi, 'Восстановление комментария к товару:')
+            await bot.sendMessage(rudi, data.object.text, optionsMarketComment)
+                  bot.sendMessage(rudi, line)  
             break
         case 'vkpay_transaction':
             let options3 = {
@@ -63,12 +71,14 @@ try {
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`}]]})}
-                  bot.sendMessage(rudi, 'Платёж через VK Pay')
-                  bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, options3) 
+            await bot.sendMessage(rudi, 'Платёж через VK Pay:')
+            await bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, options3)
+                  bot.sendMessage(rudi, line) 
             break
     }
 } catch(e) {
-    bot.sendMessage(rudi, 'Ошибка обработки события, необходимо связаться с yur0n')
+    await bot.sendMessage(rudi, 'Ошибка обработки события, необходимо связаться с yur0n')
+    bot.sendMessage(rudi, line)
 }
 }
 
