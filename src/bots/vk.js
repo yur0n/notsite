@@ -13,37 +13,37 @@ bot.on('message',  mes => {
 
 const getData = async (data) => {
 try {    
-    let optionsMarketComment = {
+    const optionsMarketComment = {
         parse_mode: 'Markdown',
         reply_markup: JSON.stringify({
           inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
           { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.item_id}`}]]})}
     switch (data.type) {
         case 'message_new':
-            let options = {
+            let options0 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/im?sel=-${data.group_id}`}]]})}
             await bot.sendMessage(rudi, 'Входящее сообщение')
-                  bot.sendMessage(rudi, data.object.message.text, options)
+                  bot.sendMessage(rudi, data.object.message.text, options0)
             break
         case 'wall_reply_new':
-            let options = {
+            let options1 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/sib_herb?w=wall-124949590_${data.post_id}`}]]})}
             await bot.sendMessage(rudi, 'Добавление комментария на стене')
-                  bot.sendMessage(rudi, data.object.text, options)                
+                  bot.sendMessage(rudi, data.object.text, options1)                
         case 'board_post_new':
-            let options = {
+            let options2 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/topic-124949590_${data.topic_id}`}]]})}
             await bot.sendMessage(rudi, 'Создание комментария в обсуждении')
-                  bot.sendMessage(rudi, data.object.text, options)     
+                  bot.sendMessage(rudi, data.object.text, options2)     
             break
         case 'market_comment_new':
             await bot.sendMessage(rudi, 'Новый комментарий к товару')
@@ -58,13 +58,13 @@ try {
                   bot.sendMessage(rudi, data.object.text, optionsMarketComment)  
             break
         case 'vkpay_transaction':
-            let options = {
+            let options3 = {
                 parse_mode: 'Markdown',
                 reply_markup: JSON.stringify({
                   inline_keyboard: [[{ text: "От кого?", url: `https://vk.com/id${data.object.from_id}`}, 
                   { text: "Подробнее", url: `https://vk.com/market-124949590?w=product-124949590_${data.item_id}`}]]})}
                   bot.sendMessage(rudi, 'Платёж через VK Pay')
-                  bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, options) 
+                  bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, options3) 
             break
     }
 } catch(e) {
