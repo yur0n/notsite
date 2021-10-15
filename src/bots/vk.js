@@ -28,7 +28,7 @@ const getData = async (data) => {
         date: new Date,
         dataRecieved: data
     })
-    newMessage.save().then(() => {
+    await newMessage.save().then(() => {
         console.log('Message received')
     }).catch((error) => {
         console.log('Error', error)
