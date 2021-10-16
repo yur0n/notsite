@@ -24,9 +24,9 @@ bot.on('message',  mes => {
 
 const getData = async (data) => {
     const newMessage = new DataVK ({
-        type: data.type,
+        name: data.type,
         date: new Date,
-        dataRecieved: data.object
+        dataRecieved: data
     })
     await newMessage.save().then(() => {
         console.log('Message received')
