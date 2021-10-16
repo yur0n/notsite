@@ -12,7 +12,7 @@ const dataBase = new mongoose.Schema ({
     date: {
         type: String
     },
-    name: {
+    type: {
         type: String
     },
     dataRecieved: {
