@@ -3,12 +3,14 @@ const express = require('express')
 const hbs = require('hbs') //Handlebars
 const geoip = require('geoip-lite') // IP to location
 
+
 // BOTS
 // require('./bots/warzone.js')                                  
 require('./bots/weather.js')
 require('./bots/dota.js')
 require('./bots/vk.js')
-const getData = require('./bots/vk')                                               
+const getData = require('./bots/vk')
+const DataVK = require('./models/messages.js')                                          
 
 // Import
 const geocode = require('./utils/geocode.js')
@@ -40,6 +42,10 @@ app.post('/vk', async (req, res) => {
     getData(req.body)
     res.send('ok')
     console.log(req.body)  
+})
+
+app.get('/vk', async (req, res) => {
+    res.send(await DataVK.find({}))
 })
 
 
