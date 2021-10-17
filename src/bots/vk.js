@@ -39,49 +39,42 @@ const getData = async (data) => {
         switch (data.type) {
             case 'wall_reply_new':
                 await bot.sendMessage(rudi, 'Добавление комментария на стене:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/sib_herb?w=wall-124949590_${data.object.post_id}`)
                 await bot.sendMessage(rudi, data.object.text, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/sib_herb?w=wall-124949590_${data.object.post_id}`))
                 bot.sendMessage(rudi, line)
                 break        
             case 'message_new':
                 await bot.sendMessage(rudi, 'Входящее сообщение:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.message.from_id}; Подробнее: https://vk.com/im?sel=-${data.group_id}`)
                 await bot.sendMessage(rudi, data.object.message.text, inlineKeyboard
                     (`https://vk.com/id${data.object.message.from_id}`, `https://vk.com/im?sel=-${data.group_id}`))
                 bot.sendMessage(rudi, line)
                 break        
             case 'board_post_new':
                 await bot.sendMessage(rudi, 'Создание комментария в обсуждении:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/topic-124949590_${data.object.topic_id}`)
                 await bot.sendMessage(rudi, data.object.text, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/topic-124949590_${data.object.topic_id}`))
                 bot.sendMessage(rudi, line)     
                 break
             case 'market_comment_new':
                 await bot.sendMessage(rudi, 'Новый комментарий к товару:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`)
                 await bot.sendMessage(rudi, data.object.text, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`))
                 bot.sendMessage(rudi, line)
                 break
             case 'market_comment_edit':
                 await bot.sendMessage(rudi, 'Редактирование комментария к товару:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`)
                 await bot.sendMessage(rudi, data.object.text, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`))
                 bot.sendMessage(rudi, line)  
                 break
             case 'market_comment_restore':
                 await bot.sendMessage(rudi, 'Восстановление комментария к товару:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`)
                 await bot.sendMessage(rudi, data.object.text, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`))
                 bot.sendMessage(rudi, line)  
                 break
             case 'vkpay_transaction':
                 await bot.sendMessage(rudi, 'Платёж через VK Pay:')
-                await bot.sendMessage(rudi, `От кого: https://vk.com/id${data.object.from_id}; Подробнее: https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`)
                 await bot.sendMessage(rudi, `${data.object.amount} руб. с комментарием: ${data.object.description}`, inlineKeyboard
                     (`https://vk.com/id${data.object.from_id}`, `https://vk.com/market-124949590?w=product-124949590_${data.object.item_id}`))
                 bot.sendMessage(rudi, line) 
