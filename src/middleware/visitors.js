@@ -9,7 +9,8 @@ const visit = async (req, res, next) => {
         if (currentIp == null) {
             const newVisit = new Visitor({
                 ip,
-                visits
+                visits,
+                lastVisit: new Date
             })
             await newVisit.save().then(() => {
                 console.log('New visitor saved')
