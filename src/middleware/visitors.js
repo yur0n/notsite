@@ -10,6 +10,7 @@ const visit = async (req, res, next) => {
             const newVisit = new Visitor({
                 ip,
                 visits,
+                firstVisit: new Date,
                 lastVisit: new Date
             })
             await newVisit.save().then(() => {
@@ -19,6 +20,7 @@ const visit = async (req, res, next) => {
             })
         } else {
             currentIp.visits += 1
+            currentIp.lastVisit = new Date
             await currentIp.save()
             console.log('Visitor updated')
         }
