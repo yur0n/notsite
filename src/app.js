@@ -2,6 +2,7 @@ const path = require('path') //Path for ez pathing
 const express = require('express')
 const hbs = require('hbs') //Handlebars
 const geoip = require('geoip-lite') // IP to location
+const visit = require('./middleware/visitors.js') // middleware with IP check and database record
 
 
 // BOTS
@@ -49,7 +50,8 @@ app.get('/vk', async (req, res) => {
 })
 
 
-app.get('', (req, res) => {
+app.get('', visit, (req, res) => {
+    
     res.render('index', {
         title: 'Weather',
         name: 'Me',
