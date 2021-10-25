@@ -3,13 +3,12 @@ const Visitor = require('../models/visitors')
 
 const visit = async (req, res, next) => {
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip
-    let visits = 1
     try {
         let currentIp = await Visitor.findOne({ ip })
-        if (currentIp == null) {
+        if (!currentIp) {
             const newVisit = new Visitor({
                 ip,
-                visits,
+                visits: 1,
                 firstVisit: new Date,
                 lastVisit: new Date
             })
