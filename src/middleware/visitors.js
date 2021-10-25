@@ -13,7 +13,7 @@ const visit = async (req, res, next) => {
                 lastVisit: new Date
             })
             await newVisit.save().then(() => {
-                console.log('New visitor saved')
+                console.log(`New visitor ${ip} saved`)
             }).catch((error) => {
                 console.log('Error', error)
             })
@@ -21,7 +21,7 @@ const visit = async (req, res, next) => {
             currentIp.visits += 1
             currentIp.lastVisit = new Date
             await currentIp.save()
-            console.log('Visitor updated')
+            console.log(`Visitor ${ip} updated`)
         }
     } catch(e) {
         console.log(e)
