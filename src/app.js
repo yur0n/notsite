@@ -5,13 +5,18 @@ const geoip = require('geoip-lite') // IP to location
 const visit = require('./middleware/visitors.js') // middleware with IP check and database record
 
 
+
 // BOTS
 // require('./bots/warzone.js')                                  
 require('./bots/weather.js')
 require('./bots/dota.js')
 require('./bots/vk.js')
+require('./bots/golden.js')
+const newBuy = require('./bots/golden')    
 const getData = require('./bots/vk')
-const DataVK = require('./models/messages.js')                                          
+const DataVK = require('./models/messages.js')
+const GoldUser = require('./models/gold.js')
+                                      
 
 // Import
 const geocode = require('./utils/geocode.js')
@@ -51,7 +56,6 @@ app.get('/vk', async (req, res) => {
 
 
 app.get('', visit, (req, res) => {
-    
     res.render('index', {
         title: 'Weather',
         name: 'Me',
@@ -137,6 +141,47 @@ app.get('/products', (req, res) => {
     res.send({
         product: []
     })
+})
+
+app.get('/gold', (req, res) => {
+    res.render('gold', {
+        title: 'GoldenShop',
+        name: 'Me',
+    })
+})
+
+app.get('/goldSilent', async (req, res) => {
+    let goldUserName = req.query.name
+    let goldUserBonus = req.query.bonus
+    if (!goldUserName || !goldUserBonus) {                                                 
+        return res.send({
+            error: 'Выберите товар и введите имя'
+        })  
+    }
+    res.send({
+        message: `Спасибо за покупку, ${goldUserName}! Вам были начислены бонусы.`
+    })
+    try {
+        let currentGoldUser = await GoldUser.findOne({name: goldUserName})
+        if (!currentGoldUser) {
+            const newGoldUser = new GoldUser({
+                name: goldUserName,
+                bonus: goldUserBonus
+            })
+            await newGoldUser.save().then(() => {
+                console.log(`New GoldUser saved`)
+            }).catch((error) => {
+                console.log('Error', error)
+            })
+        } else {
+            currentGoldUser.bonus += +goldUserBonus
+            await currentGoldUser.save()
+            console.log(`GoldUser updated`)
+            newBuy({goldUserName, goldUserBonus})
+        }
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 app.get('/help/*', (req, res) => {

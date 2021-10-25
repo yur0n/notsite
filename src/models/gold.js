@@ -7,20 +7,12 @@ mongoose.connect('mongodb+srv://yur0n:786512@cluster0.0na8y.mongodb.net/Website?
     // useFindAndModify: false
 })
 
-
-const dataBase = new mongoose.Schema ({
-    date: {
-        type: String
-    },
-    name: {
-        type: String
-    },
-    dataRecieved: {
-        type: Object
-    }
+const schema = new mongoose.Schema({
+    name: 'string',
+    bonus: 'number',
+    chat: 'number'
 })
 
+const Golduser = mongoose.model('Golduser', schema)
 
-const DataVK = mongoose.model('vkmessage', dataBase)
-
-module.exports = DataVK
+module.exports = Golduser
