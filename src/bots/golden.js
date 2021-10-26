@@ -15,7 +15,6 @@ const inlineKeyboard = (url1, url2) => {        // inline keyboard as object of 
 
 
 bot.on('message',  async (mes) => {
-    bot.sendMessage(mes.chat.id, 'Я буду автоматически присылать новую информацию о твоей группе.')
     console.log(mes.chat.id, mes.text)
     let user = await Golduser.findOne({name: mes.text})
     if (!user) {
