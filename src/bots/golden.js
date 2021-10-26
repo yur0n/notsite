@@ -19,7 +19,7 @@ bot.on('message',  async (mes) => {
     console.log(mes.chat.id, mes.text)
     let user = await Golduser.findOne({name: mes.text})
     if (!user) {
-        bot.sendMessage(mes.chat.id, `${user.name} не совершил ни одной покупки. Введите ваше имя повторно`)
+        bot.sendMessage(mes.chat.id, `${mes.text} не совершил ни одной покупки. Введите ваше имя повторно`)
     } else {
         user.chat = mes.chat.id
         await user.save().then(() => {
