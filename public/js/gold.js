@@ -20,7 +20,7 @@ nameForm.addEventListener('submit', (e) => {
         if (data.error) message.textContent = data.error
         else { 
             message.textContent = data.message
-            message1.textContent = "Для просмотра баланса бонусов, отправьте GOLDENBOT'у своё имя"
+            message1.textContent = "Для просмотра баланса бонусов, отправьте GOLDENBOT'у своё имя."
             setTimeout( ()=>{
                 message.textContent = ` `
                 message1.textContent = ` `
