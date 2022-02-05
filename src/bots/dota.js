@@ -29,14 +29,19 @@ bot.command("start", (msg, reply, next) => {
 })
 
 bot.text( async (msg, reply, next) => {
+    if (msg.from.id == -1001160655674) {
+        console.log(msg.from.username, msg.from.name, msg.from.id, `Message: ${msg.text}`)
+        return
+    }
     var player = msg.text
+    let matchId = 0
     if (msg.text == "Рудя \u{1F92C}") player = '120202499'; if (msg.text == "Антон \u{1F913}") player = '97938416'
     if (msg.text == "Грызля \u{1F921}") player = '115455869'; if (msg.text == "Юрон \u{1F934}") player = '93442227'
     await reply.text('loading.')
     loading.forEach(load => {
         reply.editText(msg.id + 1, load)
     })
-    url = 'https://api.opendota.com/api/players/' + player + '/recentMatches'
+    url = `https://api.opendota.com/api/players/${player}/recentMatches`
     request({ url: url, json: true }, async (error, response) => {
         try {
         matchId = response.body[0].match_id
