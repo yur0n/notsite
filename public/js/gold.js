@@ -14,6 +14,7 @@ function isCheck() {
         case 'buy2': return 191
         case 'buy3': return 254
         case 'buy4': return 362
+    }
 }
 
 
