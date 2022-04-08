@@ -5,10 +5,15 @@ const message1 = document.querySelector('#message1')
 
 function isCheck() {
     let goodId = document.querySelector('input[name="buy"]:checked').id
-    if (goodId == 'buy1') return 360
-    if (goodId == 'buy2') return 191
-    if (goodId == 'buy3') return 254
-    if (goodId == 'buy4') return 362 
+    // if (goodId == 'buy1') return 360
+    // if (goodId == 'buy2') return 191
+    // if (goodId == 'buy3') return 254
+    // if (goodId == 'buy4') return 362
+    switch (goodId) {
+        case 'buy1': return 360
+        case 'buy2': return 191
+        case 'buy3': return 254
+        case 'buy4': return 362
 }
 
 
